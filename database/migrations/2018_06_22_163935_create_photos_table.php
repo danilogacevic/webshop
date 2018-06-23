@@ -18,6 +18,8 @@ class CreatePhotosTable extends Migration
                 $table->integer('product_id')->unsigned()->index();
                 $table->string('file');
 
+                $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
                 $table->timestamps();
             });
             

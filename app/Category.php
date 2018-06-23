@@ -22,5 +22,12 @@ class Category extends Model
      */
     protected $fillable = ['title'];
 
+//    Relations
+
+    public function products(){
+
+        return $this->hasMany('App\Product');
+    }
+
 
 }

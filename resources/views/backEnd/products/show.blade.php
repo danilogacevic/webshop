@@ -15,7 +15,7 @@ Product
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $product->id }}</td> <td> {{ $product->product_title }} </td><td> {{ $product->category }} </td><td> {{ $product->product_price }} </td>
+                    <td>{{ $product->id }}</td> <td> {{ $product->product_title }} </td><td> {{ $product->category->title }} </td><td> {{ $product->product_price }} </td>
                 </tr>
             </tbody>    
         </table>

@@ -24,7 +24,7 @@ Edit Product
             <div class="form-group {{ $errors->has('category') ? 'has-error' : ''}}">
                 {!! Form::label('category', 'Category: ', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('category', null, ['class' => 'form-control']) !!}
+                    {!! Form::select('category_id',[''=>'Select Category'] + $categories,null,['class'=>'form-control'])!!}
                     {!! $errors->first('category', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>

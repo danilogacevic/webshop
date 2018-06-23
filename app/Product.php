@@ -31,6 +31,8 @@ class Product extends Model
         'short_description'
     ];
 
+//    Relations
+
     public function category(){
 
         return $this->belongsTo('App\Category');

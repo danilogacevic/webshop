@@ -77,8 +77,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $categories = Category::pluck('title','id')->all();
 
-        return view('backEnd.products.edit', compact('product'));
+        return view('backEnd.products.edit', compact('product','categories'));
     }
 
     /**

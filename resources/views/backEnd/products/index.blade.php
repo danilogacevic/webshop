@@ -17,7 +17,7 @@ Product
             @foreach($products as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td><a href="{{ url('admin/products', $item->id) }}">{{ $item->product_title }}</a></td><td>{{ $item->category }}</td><td>{{ $item->product_price }}</td>
+                    <td><a href="{{ url('admin/products', $item->id) }}">{{ $item->product_title }}</a></td><td>{{ $item->category->title }}</td><td>{{ $item->product_price }}</td>
                     <td>
                         <a href="{{ url('admin/products/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a> 
                         {!! Form::open([

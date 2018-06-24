@@ -33,15 +33,20 @@ class Photo extends Model
     }
 
 
-    public function uploadPhoto($data) {
+    public function uploadPhoto($data,$id=0) {
 
         $file = $data->file('file');
         $name = time() . $file->getClientOriginalName();
         $file->move('photos' , $name);
-        if(Session::has('added_product')){
-            $id = Session::get('added_product');
-            session()->forget('added_product');
-        }
+//        if(Session::has('added_product')){
+//            $id = Session::get('added_product');
+//            session()->forget('added_product');
+//        } else {
+//            $id = 0;
+//        }
+
+//        session()->flash('added_product',$id);
+
         $this->create(['file'=>$name,'product_id'=>$id]);
     }
 

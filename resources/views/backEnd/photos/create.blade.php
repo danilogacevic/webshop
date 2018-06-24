@@ -10,7 +10,7 @@
 
     <h1>Upload photos for {{$product->product_title}}</h1>
 
-    {!! Form::open(['method'=>'POST','action'=>'PhotosController@store','files'=>'true', 'class'=>'dropzone']) !!}
+    {!! Form::open(['method'=>'POST','action'=>'PhotosController@store','files'=>'true', 'class'=>'dropzone','id'=>'drop']) !!}
 
     {!! Form::close() !!}
 
@@ -18,7 +18,9 @@
 
 @section('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+    <script src="{{asset('/js/dropzone.js')}}"></script>
+
+
 
 @stop
 

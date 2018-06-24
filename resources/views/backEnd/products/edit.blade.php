@@ -62,6 +62,9 @@ Edit Product
         <div class="col-sm-offset-3 col-sm-3">
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
+        <div class="col-sm-3">
+            <input type="submit" name="change_photos" value="Change photos" class="btn-primary form-control">
+        </div>
     </div>
     {!! Form::close() !!}
 

@@ -93,8 +93,14 @@ class ProductsController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+
         $product = Product::findOrFail($id);
+
+        if(isset($request->change_photos)) {
+
+            return $this->updateProductPhotos($product);
+        }
+
         $product->update($request->all());
 
         Session::flash('message', 'Product updated!');
@@ -120,6 +126,16 @@ class ProductsController extends Controller
         Session::flash('status', 'success');
 
         return redirect('admin/products');
+    }
+
+//    Update product photos
+
+    public function updateProductPhotos($product) {
+
+        session()->flash('update_product', $product->id);
+
+        return view('backEnd.photos.create',compact('product'));
+
     }
 
 }

@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <h1>Upload Media</h1>
+    <h1>Upload photos for {{$product->product_title}}</h1>
 
     {!! Form::open(['method'=>'POST','action'=>'PhotosController@store','files'=>'true', 'class'=>'dropzone']) !!}
 

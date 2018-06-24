@@ -1,65 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>@yield('title')</title>
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
-	<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
-	<style>
-		body {
-			padding-top: 70px;
-		}
-	</style>
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-	@yield('styles')
+	<title>SB Admin - Bootstrap Admin Template</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="{{asset('css/admin.css')}}" rel="stylesheet">
+<!-- <link href="@yield('styles')" rel="stylesheet"> -->
+
+@yield('styles')
+
+
+<!-- Custom Fonts -->
+
+@yield('fonts')
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
 </head>
+
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-	    <div class="container">
-	        <!-- Brand and toggle get grouped for better mobile display -->
-	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-	                <span class="sr-only">Toggle navigation</span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="#">CRUD App</a>
-	        </div>
 
-			<div class="collapse navbar-collapse" id="navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
-					@else
-						<li><a href="#">{{ Auth::user()->name }}</a></li>
-						<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-					@endif
+<div id="wrapper">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">SB Admin</a>
+		</div>
+		<!-- Top Menu Items -->
+		<ul class="nav navbar-right top-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+				<ul class="dropdown-menu message-dropdown">
+					<li class="message-preview">
+						<a href="#">
+							<div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+								<div class="media-body">
+									<h5 class="media-heading"><strong>John Smith</strong>
+									</h5>
+									<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+									<p>Lorem ipsum dolor sit amet, consectetur...</p>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="message-preview">
+						<a href="#">
+							<div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+								<div class="media-body">
+									<h5 class="media-heading"><strong>John Smith</strong>
+									</h5>
+									<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+									<p>Lorem ipsum dolor sit amet, consectetur...</p>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="message-preview">
+						<a href="#">
+							<div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+								<div class="media-body">
+									<h5 class="media-heading"><strong>John Smith</strong>
+									</h5>
+									<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+									<p>Lorem ipsum dolor sit amet, consectetur...</p>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="message-footer">
+						<a href="#">Read All New Messages</a>
+					</li>
 				</ul>
-			</div>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+				<ul class="dropdown-menu alert-dropdown">
+					<li>
+						<a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+					</li>
+					<li>
+						<a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+					</li>
+					<li>
+						<a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+					</li>
+					<li>
+						<a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+					</li>
+					<li>
+						<a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+					</li>
+					<li>
+						<a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="#">View All</a>
+					</li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li class="active">
+					<a href=""><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+				</li>
+				<li>
+					<a href=""><i class="fa fa-fw fa-bar-chart-o"></i>Orders</a>
+				</li>
+				<li>
+					<a href=""><i class="fa fa-fw fa-table"></i>Reports</a>
+				</li>
+				<li>
+					<a href="{{route('products.index')}}"><i class="fa fa-fw fa-edit"></i>View products</a>
+				</li>
+				<li>
+					<a href="{{route('products.create')}}"><i class="fa fa-fw fa-desktop"></i>Add product</a>
+				</li>
+				<li>
+					<a href="{{route('categories.index')}}"><i class="fa fa-fw fa-wrench"></i>Categories</a>
+				</li>
 
-	    </div><!-- /.container-fluid -->
+				<li>
+					<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users<i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="demo" class="collapse">
+						<li>
+							<a href="">All users</a>
+						</li>
+						<li>
+							<a href="">Add user</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
 	</nav>
 
-	<div class="container">
-		@yield('content')
+	<div id="page-wrapper">
+
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						Dashboard
+					</h1>
+
+				</div>
+			</div>
+			<!-- /.row -->
+
+			@yield('content')
+
+		</div>
+		<!-- /.container-fluid -->
+
 	</div>
+	<!-- /#page-wrapper -->
 
-	<hr/>
+</div>
+<!-- /#wrapper -->
 
-	<div class="container">
-	    &copy; {{ date('Y') }}. Created by <a href="http://www.rolandalla.com">Roland Alla</a>
-	    <br/>
-	</div>
+<!-- jQuery -->
+<script src="{{asset('js/admin.js')}}"></script>
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-	@yield('scripts')
+@yield('scripts')
+
+
+
+
 </body>
+
 </html>

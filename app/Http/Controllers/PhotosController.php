@@ -44,6 +44,7 @@ class PhotosController extends Controller
     {
         
         $photo = new Photo();
+//        session()->reflash();
         $photo->uploadPhoto($request);
 
         Session::flash('message', 'Photo added!');

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Session;
 
 class Photo extends Model
 {
@@ -37,7 +38,11 @@ class Photo extends Model
         $file = $data->file('file');
         $name = time() . $file->getClientOriginalName();
         $file->move('photos' , $name);
-        $this->create(['file'=>$name,'product_id'=>1]);
+        if(Session::has('added_product')){
+            $id = Session::get('added_product');
+            session()->forget('added_product');
+        }
+        $this->create(['file'=>$name,'product_id'=>$id]);
     }
 
 

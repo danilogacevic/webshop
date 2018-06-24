@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Category;
 
 class ProductsController extends Controller
@@ -45,12 +45,14 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         
-        Product::create($request->all());
+        $product = Product::create($request->all());
+
+        $request->session()->flash('added_product', $product->id);
 
         Session::flash('message', 'Product added!');
         Session::flash('status', 'success');
 
-        return redirect('admin/products');
+        return view('backEnd.photos.create',compact('product'));
     }
 
     /**

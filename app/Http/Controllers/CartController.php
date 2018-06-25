@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -61,9 +64,9 @@ class CartController extends Controller
 
                 Cache::increment('amount'.$id,$amount);
 
-                Session::set('product_'.$id,Cache::get('amount'.$id));
+                session(['product_'.$id => Cache::get('amount'.$id)]);
 
-                return redirect('/products/');
+                return redirect()->route('checkout');
 
             }  else {
 
@@ -71,9 +74,10 @@ class CartController extends Controller
 
                 Cache::put('amount'.$id,1,10);
 
-                Session::set('product_'.$id,Cache::get('amount'.$id));
+                session(['product_'.$id => Cache::get('amount'.$id)]);
 
-                return redirect('/products/');
+                return redirect()->route('checkout');
+
             }
 
 
@@ -84,6 +88,15 @@ class CartController extends Controller
 //            if cart is empty, add product to it
 
             Session::push('cart.items', $id);
+
+
+            Cache::put('amount'.$id,1,10);
+
+            session(['product_'.$id => Cache::get('amount'.$id)]);
+
+            return redirect()->route('checkout');
+
+//            return 'yeahh';
 
         }
     }
@@ -96,14 +109,14 @@ class CartController extends Controller
 
             session(['product_'.$id => Cache::decrement('amount'.$id,$amount)]);
 
-            return redirect('/products');
+            return redirect()->route('checkout');
 
         } else {
 
             session()->forget('product_'.$id);
             Cache::forget('amount' . $id);
 
-            return redirect('/products');
+            return redirect()->route('checkout');
         }
 
 
@@ -119,7 +132,7 @@ class CartController extends Controller
 
             session(['product_'.$id => Cache::increment('amount'.$id,$amount)]);
 
-            return redirect('/products');
+            return redirect()->route('checkout');
 
 
 
@@ -127,7 +140,7 @@ class CartController extends Controller
 
             session()->flash('message','We have only '. $product->product_quantity . 'left');
 
-            return redirect('/products');
+            return redirect()->route('checkout');
         }
 
 
@@ -138,6 +151,12 @@ class CartController extends Controller
         session()->forget('product_'.$id);
         Cache::forget('amount' . $id);
 
-        return redirect('/products');
+        return redirect()->route('checkout');
+    }
+
+    public function emptyCart(){
+        session()->flush();
+        cache()->flush();
+        return redirect()->route('ecom');
     }
 }

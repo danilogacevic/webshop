@@ -10,13 +10,14 @@ Product
         <table class="table table-bordered table-striped table-hover" id="tbladmin/products">
             <thead>
                 <tr>
-                    <th>ID</th><th>Product Title</th><th>Category</th><th>Product Price</th><th>Actions</th>
+                    <th>Id</th>
+                    <th>Product Title</th><th>Category</th><th>Product Price</th><th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($products as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
+                <tr><td>{{$item->id}}</td>
+
                     <td><a href="{{ url('admin/products', $item->id) }}">{{ $item->product_title }}</a></td><td>{{ $item->category->title }}</td><td>{{ $item->product_price }}</td>
                     <td>
                         <a href="{{ url('admin/products/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a> 

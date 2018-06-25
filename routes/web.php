@@ -13,13 +13,49 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', function () {
-    return view('ecom');
-});
+//Route::get('/', function () {
+//    return view('ecom');
+//})->name('ecom');
 
 Auth::routes();
 
+// Pages
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Ecom page
+
+Route::get('/', 'HomeController@ecom')->name('ecom');
+
+//Single item page
+
+Route::get('/item/{id}','HomeController@item')->name('item');
+
+// add product
+
+Route::post('/item/{id}','CartController@addProduct')->name('addProduct');
+
+// decrease amount
+
+Route::get('/decreaseAmount/{id}','CartController@decreaseQuantity')->name('decreaseAmount');
+
+// increase amount
+
+Route::get('/increaseAmount/{id}','CartController@increaseQuantity')->name('increaseAmount');
+
+// remove product
+
+Route::get('/removeProduct/{id}','CartController@removeProduct')->name('removeProduct');
+
+// cart
+
+Route::get('/checkout','CartController@index')->name('checkout');
+
+// empty cart
+
+Route::get('/emptyCart','CartController@emptyCart')->name('emptyCart');
+
+
 
 
 Route::group(['middleware'=>'admin'],function(){

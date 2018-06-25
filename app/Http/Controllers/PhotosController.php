@@ -49,7 +49,7 @@ class PhotosController extends Controller
         if(session()->has('update_product')) {
 
 //            $product = Product::find(session()->get('update_product'));
-            $this->destroy_all(session()->get('update_product'));
+//            $this->destroy_all(session()->get('update_product'));
 //            $product->photos()->delete();
 
             $photo->uploadPhoto($request,Session::get('update_product'));
@@ -141,16 +141,16 @@ class PhotosController extends Controller
         return redirect('admin/photos');
     }
 
-    public function destroy_all($id)
-    {
-        $photos = Photo::where('product_id','=',$id)->get();
-
-        foreach ($photos as $photo) {
-
-            unlink(public_path() . $photo->file);
-            $photo -> delete();
-
-        }
-    }
+//    public function destroy_all($id)
+//    {
+//        $photos = Photo::where('product_id','=',$id)->get();
+//
+//        foreach ($photos as $photo) {
+//
+//            unlink(public_path() . $photo->file);
+//            $photo -> delete();
+//
+//        }
+//    }
 
 }

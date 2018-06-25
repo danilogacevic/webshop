@@ -27,9 +27,9 @@ class Photo extends Model
 
 //    file getter for Photo model
 
-    public function getFileAttribute($name){
+    public function getFileAttribute($file){
 
-        return $this->uploads . $name;
+        return $this->uploads . $file;
     }
 
 
@@ -48,6 +48,23 @@ class Photo extends Model
 //        session()->flash('added_product',$id);
 
         $this->create(['file'=>$name,'product_id'=>$id]);
+    }
+
+    public function destroy_all($id)
+    {
+        $photos = Photo::where('product_id','=',$id)->get();
+
+        foreach ($photos as $photo) {
+
+            unlink(public_path() . $photo->file);
+            $photo -> delete();
+
+        }
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
     }
 
 

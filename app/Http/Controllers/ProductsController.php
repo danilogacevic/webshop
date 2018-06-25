@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use App\Photo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -97,6 +98,9 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
 
         if(isset($request->change_photos)) {
+
+            $photo = new Photo();
+            $photo->destroy_all($id);
 
             return $this->updateProductPhotos($product);
         }

@@ -63,7 +63,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin', function () {
 
         return view('backEnd.index');
-    });
+    })->name('adminDashboard');
 
     Route::resource('admin/categories','CategoriesController');
 

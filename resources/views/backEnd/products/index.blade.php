@@ -7,7 +7,7 @@ Product
 
     <h1>Products <a href="{{ url('admin/products/create') }}" class="btn btn-primary pull-right btn-sm">Add New Product</a></h1>
     <div class="table table-responsive">
-        <table class="table table-bordered table-striped table-hover" id="tbladmin/products">
+        <table class="table table-bordered table-striped table-hover" id="tbladmin_products">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -38,9 +38,10 @@ Product
 @endsection
 
 @section('scripts')
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#tbladmin/products').DataTable({
+        $('#tbladmin_products').DataTable({
             columnDefs: [{
                 targets: [0],
                 visible: false,

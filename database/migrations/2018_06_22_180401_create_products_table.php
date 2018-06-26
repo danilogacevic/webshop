@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->integer('product_quantity')->unsigned();
             $table->text('product_description');
             $table->text('short_description');
+            $table->string('slug');
+
 
             $table->timestamps();
         });

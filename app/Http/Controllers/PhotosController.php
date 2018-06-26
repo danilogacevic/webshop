@@ -52,8 +52,6 @@ class PhotosController extends Controller
     public function store(Request $request)
     {
 
-
-
         if(session()->has('update_product')) {
 
 

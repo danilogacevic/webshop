@@ -110,8 +110,10 @@ class ProductsController extends Controller
 
             //        Updating product photos, if clicked
 
-            $photo = new Photo();
-            $photo->destroy_all($id);
+            if($product->photos) {
+                $photo = new Photo();
+                $photo->destroy_all($id);
+            }
 
             session()->flash('update_product', $product->id);
 

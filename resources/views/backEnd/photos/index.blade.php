@@ -7,7 +7,7 @@ Photo
 
     <h1>Photos <a href="{{ url('admin/photos/create') }}" class="btn btn-primary pull-right btn-sm">Add New Photo</a></h1>
     <div class="table table-responsive">
-        <table class="table table-bordered table-striped table-hover" id="tbladmin/photos">
+        <table class="table table-bordered table-striped table-hover" id="tbladmin_photos">
             <thead>
                 <tr>
                     <th>ID</th><th>Product</th><th>File</th><th>Actions</th>
@@ -38,17 +38,20 @@ Photo
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#tbladmin/photos').DataTable({
-            columnDefs: [{
-                targets: [0],
-                visible: false,
-                searchable: false
+
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#tbladmin_photos').DataTable({
+                columnDefs: [{
+                    targets: [0],
+                    visible: false,
+                    searchable: false
                 },
-            ],
-            order: [[0, "asc"]],
+                ],
+                order: [[0, "asc"]],
+            });
         });
-    });
-</script>
+    </script>
 @endsection

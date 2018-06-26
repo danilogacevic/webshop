@@ -19,6 +19,21 @@ use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
+Route::group(['middleware'=>'admin'],function(){
+
+    Route::get('/admin', function () {
+
+        return view('backEnd.index');
+    })->name('adminDashboard');
+
+    Route::resource('admin/categories','CategoriesController');
+
+    Route::resource('/admin/photos','PhotosController');
+
+    Route::resource('/admin/products','ProductsController');
+
+});
+
 // Pages
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -60,17 +75,3 @@ Route::get('/removeProduct/{id}','CartController@removeProduct')->name('removePr
 
 
 
-Route::group(['middleware'=>'admin'],function(){
-
-    Route::get('/admin', function () {
-
-        return view('backEnd.index');
-    })->name('adminDashboard');
-
-    Route::resource('admin/categories','CategoriesController');
-
-    Route::resource('/admin/photos','PhotosController');
-
-    Route::resource('/admin/products','ProductsController');
-
-});

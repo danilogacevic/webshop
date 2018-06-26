@@ -6,7 +6,7 @@
         <p class="lead">Shop Name</p>
         <div class="list-group">
             @foreach($categories as $category)
-                <a href="{{route('ecom',$category->id)}}" class="list-group-item">{{$category->title}}</a>
+                <a href="{{route('ecom',$category->slug)}}" class="list-group-item">{{$category->title}}</a>
             @endforeach
         </div>
     </div>
@@ -60,7 +60,7 @@
                                     " alt="">
                             <div class="caption">
                                 <h4 class="pull-right">{{$product->product_price}}</h4>
-                                <p class=""><a href="{{route('item',$product->id)}}">{{$product->product_title}}</a></p>
+                                <p class=""><a href="{{route('item',$product->slug)}}">{{$product->product_title}}</a></p>
                                 </h4>
                                 <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
                             </div>

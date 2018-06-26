@@ -3,6 +3,7 @@
 Product
 @stop
 
+
 @section('content')
 
     <h1>Products <a href="{{ url('admin/products/create') }}" class="btn btn-primary pull-right btn-sm">Add New Product</a></h1>
@@ -38,18 +39,20 @@ Product
 @endsection
 
 @section('scripts')
+
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#tbladmin_products').DataTable({
-            columnDefs: [{
-                targets: [0],
-                visible: false,
-                searchable: false
-                },
-            ],
-            order: [[0, "asc"]],
-        });
-    });
-</script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#tbladmin_products').DataTable({
+                    columnDefs: [{
+                        targets: [0],
+                        visible: false,
+                        searchable: false
+                        },
+                    ],
+                    order: [[0, "asc"]],
+                });
+            });
+        </script>
 @endsection

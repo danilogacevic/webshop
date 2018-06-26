@@ -30,6 +30,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'product_price' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 20),
         'product_quantity' => $faker->numberBetween(20,100),
         'product_description' => $faker->text($maxNbChars = 500),
-        'short_description' => $faker->text($maxNbChars = 300)
+        'short_description' => $faker->text($maxNbChars = 300),
+        'slug' => $faker->word
     ];
 });

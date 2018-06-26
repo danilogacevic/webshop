@@ -28,7 +28,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function ecom($catId = null)
+    public function ecom($slug = null)
     {
 
 //        $products = Product::with('photos')->get();
@@ -39,11 +39,13 @@ class HomeController extends Controller
 //            dd($product->photos()->first()->file);
 //        }
 
-        if($catId) {
+        if($slug) {
 
 //            loading products by category through eager loading
 
-            $categories = Category::with(['products' => function($query) use ($catId) {
+            $catId = Category::where('slug',$slug)->first()->id;
+
+              $categories = Category::with(['products' => function($query) use ($catId) {
                 $query->where('category_id',$catId);
             }])->get();
 
@@ -68,9 +70,9 @@ class HomeController extends Controller
 
     }
 
-    public function item($id)
+    public function item($slug)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('slug',$slug)->first();
         return view('item',compact('product'));
     }
 

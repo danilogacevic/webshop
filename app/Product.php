@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use Sluggable;
 
     /**
      * The database table used by the model.
@@ -41,6 +43,20 @@ class Product extends Model
     public function photos(){
 
         return $this->hasMany('App\Photo');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'product_title'
+            ]
+        ];
     }
 
 

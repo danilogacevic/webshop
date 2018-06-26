@@ -10,11 +10,13 @@ use App\Product;
 class CartController extends Controller
 {
 
-//    display products and qantity on checkout page
+
 
     public function index()
     {
-        //
+        //    display products and qantity on checkout page
+
+        // variables needed for paying, for example with paypal.
 
         $total         = 0;
         $item_quantity = 0;
@@ -23,30 +25,30 @@ class CartController extends Controller
         $amount        = 1;
         $quantity      = 1;
 
-
         $items = Session::get('cart')['items'];
 
         $products = Product::findMany($items);
 
         return view('checkout',compact('products','item_quantity','item_name','item_number','amount','quantity','total'));
 
-        // Session::flush();
-        // Cache::flush();
+
 
     }
 
-//    Add products to shoping cart
+
 
     public function addProduct($id){
 
+        //    Adding products to shoping cart
 
-//    Checking if cart is empty
+
+            //     Checking if cart is empty
 
         if(!empty(Session::get('cart')['items'])){
 
             $products = Session::get('products')['id'];
 
-//          Checking if item is in the list
+            //          Checking if item is in the list
 
             if(! in_array($id,Session::get('cart')['items'])) {
 
@@ -54,13 +56,13 @@ class CartController extends Controller
 
             }
 
-//            Checking if product is added to shopping cart
+            //            Checking if product is added to shopping cart
 
             if(Session::has('product_'.$id)) {
 
                 $amount = 1;
 
-//                if it's already there, increase amount by one
+                //                if it's already there, increase amount by one
 
                 Cache::increment('amount'.$id,$amount);
 
@@ -70,7 +72,7 @@ class CartController extends Controller
 
             }  else {
 
-//                if product isn't in the list, add it and set amount to one. Set time cache time to 10 mins
+                //                if product isn't in the list, add it and set amount to one. Set time cache time to 10 mins
 
                 Cache::put('amount'.$id,1,10);
 
@@ -161,9 +163,11 @@ class CartController extends Controller
 
     }
 
-//    Removing product from list
+
 
     public function removeProduct($id){
+
+        //    Removing product from list
 
         session()->forget('product_'.$id);
         Cache::forget('amount' . $id);
@@ -171,9 +175,11 @@ class CartController extends Controller
         return redirect()->route('checkout');
     }
 
-//    empty shoping cart
+
 
     public function emptyCart(){
+
+        //    empty shoping cart
 
 //        deleting all sessions related to shoping cart and all cache
 

@@ -157,22 +157,6 @@
 					<a href="{{route('adminDashboard')}}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 				</li>
 				<li>
-					<a href=""><i class="fa fa-fw fa-bar-chart-o"></i>Orders</a>
-				</li>
-				<li>
-					<a href=""><i class="fa fa-fw fa-table"></i>Reports</a>
-				</li>
-				<li>
-					<a href="{{route('products.index')}}"><i class="fa fa-fw fa-edit"></i>View products</a>
-				</li>
-				<li>
-					<a href="{{route('products.create')}}"><i class="fa fa-fw fa-desktop"></i>Add product</a>
-				</li>
-				<li>
-					<a href="{{route('categories.index')}}"><i class="fa fa-fw fa-wrench"></i>Categories</a>
-				</li>
-
-				<li>
 					<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="demo" class="collapse">
 						<li>
@@ -183,7 +167,16 @@
 						</li>
 					</ul>
 				</li>
-
+				<li>
+					<a href="{{route('categories.index')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Categories</a>
+				</li>
+				<li>
+					<a href="{{route('products.index')}}"><i class="fa fa-fw fa-edit"></i>Products</a>
+				</li>
+				<li>
+					<a href="{{route('photos.index')}}"><i class="fa fa-fw fa-table"></i>Photos</a>
+				</li>
+			
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

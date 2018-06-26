@@ -54,7 +54,7 @@ class CartController extends Controller
 
             }
 
-//            Checging if product is added to shopping cart
+//            Checking if product is added to shopping cart
 
             if(Session::has('product_'.$id)) {
 
@@ -70,7 +70,7 @@ class CartController extends Controller
 
             }  else {
 
-//                if product isn't in the list, add it and set amount to one
+//                if product isn't in the list, add it and set amount to one. Set time cache time to 10 mins
 
                 Cache::put('amount'.$id,1,10);
 
@@ -96,12 +96,19 @@ class CartController extends Controller
 
             return redirect()->route('checkout');
 
-//            return 'yeahh';
+
 
         }
     }
 
     public function decreaseQuantity($id){
+
+//        if cache time is expired, empty shoping cart
+
+        if(! cache()->has('amount'.$id)) {
+
+           return $this->emptyCart();
+        }
 
         if(session('product_'.$id)>1){
 
@@ -123,6 +130,14 @@ class CartController extends Controller
     }
 
     public function increaseQuantity($id){
+
+        //        if cache time is expired, empty shoping cart
+
+
+        if(! cache()->has('amount'.$id)) {
+
+           return $this->emptyCart();
+        }
 
         $product = Product::findOrFail($id);
 
@@ -146,6 +161,8 @@ class CartController extends Controller
 
     }
 
+//    Removing product from list
+
     public function removeProduct($id){
 
         session()->forget('product_'.$id);
@@ -154,8 +171,17 @@ class CartController extends Controller
         return redirect()->route('checkout');
     }
 
+//    empty shoping cart
+
     public function emptyCart(){
-        session()->flush();
+
+//        deleting all sessions related to shoping cart and all cache
+
+        foreach (session()->get('cart.items') as $productId) {
+
+            session()->forget('product_'. $productId);
+        }
+        session()->forget('cart.items');
         cache()->flush();
         return redirect()->route('ecom');
     }

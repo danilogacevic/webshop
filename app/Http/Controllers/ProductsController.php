@@ -47,7 +47,7 @@ class ProductsController extends Controller
     {
 
         $request->validate([
-            'product_title' => 'required|unique:categories|max:255',
+            'product_title' => 'required|unique:products|max:255',
             'category_id' => 'required',
             'product_price' => 'required',
             'product_description' => 'required',
@@ -105,13 +105,20 @@ class ProductsController extends Controller
 
         $product = Product::findOrFail($id);
 
+
         if(isset($request->change_photos)) {
+
+            //        Updating product photos, if clicked
 
             $photo = new Photo();
             $photo->destroy_all($id);
 
-            return $this->updateProductPhotos($product);
+            session()->flash('update_product', $product->id);
+
+            return view('backEnd.photos.create',compact('product'));
         }
+
+//        update rest of product data, but not photos
 
         $product->update($request->all());
 
@@ -140,14 +147,6 @@ class ProductsController extends Controller
         return redirect('admin/products');
     }
 
-//    Update product photos
 
-    public function updateProductPhotos($product) {
-
-        session()->flash('update_product', $product->id);
-
-        return view('backEnd.photos.create',compact('product'));
-
-    }
 
 }

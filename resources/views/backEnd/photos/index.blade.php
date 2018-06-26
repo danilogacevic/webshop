@@ -17,7 +17,8 @@ Photo
             @foreach($photos as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td><a href="{{ url('admin/photos', $item->id) }}">{{ $item->product }}</a></td><td>{{ $item->file }}</td>
+                    <td><a href="{{ url('admin/photos', $item->id) }}">{{ $item->product->product_title }}</a></td><td>
+                        <img src="{{ $item->file }}" alt="" width="50px"></td>
                     <td>
                         <a href="{{ url('admin/photos/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a> 
                         {!! Form::open([

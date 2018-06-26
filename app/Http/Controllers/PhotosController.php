@@ -14,11 +14,19 @@ use Session;
 class PhotosController extends Controller
 {
 
+    public $photo;
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
+
+    public function __construct()
+    {
+        $this -> photo = new Photo();
+    }
+
     public function index()
     {
         $photos = Photo::all();
@@ -44,31 +52,23 @@ class PhotosController extends Controller
     public function store(Request $request)
     {
 
-        $photo = new Photo();
+
 
         if(session()->has('update_product')) {
 
-//            $product = Product::find(session()->get('update_product'));
-//            $this->destroy_all(session()->get('update_product'));
-//            $product->photos()->delete();
 
-            $photo->uploadPhoto($request,Session::get('update_product'));
+            $this->photo->uploadPhoto($request,Session::get('update_product'));
             return redirect('admin/photos');
             
         } elseif(session()->has('added_product')){
 
-//            $photo = new Photo();
-//        session()->reflash();
-            $photo->uploadPhoto($request,Session::get('added_product'));
+            $this->photo->uploadPhoto($request,Session::get('added_product'));
 
             Session::flash('message', 'Photo added!');
             Session::flash('status', 'success');
 
             return redirect('admin/photos');
         }
-
-
-
 
 
     }
@@ -141,16 +141,6 @@ class PhotosController extends Controller
         return redirect('admin/photos');
     }
 
-//    public function destroy_all($id)
-//    {
-//        $photos = Photo::where('product_id','=',$id)->get();
-//
-//        foreach ($photos as $photo) {
-//
-//            unlink(public_path() . $photo->file);
-//            $photo -> delete();
-//
-//        }
-//    }
+
 
 }

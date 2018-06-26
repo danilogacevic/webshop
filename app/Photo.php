@@ -32,23 +32,19 @@ class Photo extends Model
         return $this->uploads . $file;
     }
 
+//    photos uploading function
 
     public function uploadPhoto($data,$id=0) {
 
         $file = $data->file('file');
         $name = time() . $file->getClientOriginalName();
         $file->move('photos' , $name);
-//        if(Session::has('added_product')){
-//            $id = Session::get('added_product');
-//            session()->forget('added_product');
-//        } else {
-//            $id = 0;
-//        }
 
-//        session()->flash('added_product',$id);
 
         $this->create(['file'=>$name,'product_id'=>$id]);
     }
+
+//    delete all photos related to specific product
 
     public function destroy_all($id)
     {

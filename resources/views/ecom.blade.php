@@ -6,7 +6,7 @@
                 <p class="lead">Shop Name</p>
                 <div class="list-group">
                     @foreach($categories as $category)
-                    <a href="#" class="list-group-item">{{$category->title}}</a>
+                    <a href="{{route('ecom',$category->id)}}" class="list-group-item">{{$category->title}}</a>
                     @endforeach
                 </div>
             </div>

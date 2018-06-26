@@ -23,9 +23,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// cart
+
+Route::get('/checkout','CartController@index')->name('checkout');
+
+// empty cart
+
+Route::get('/emptyCart','CartController@emptyCart')->name('emptyCart');
+
 // Ecom page
 
-Route::get('/', 'HomeController@ecom')->name('ecom');
+Route::get('/{id?}', 'HomeController@ecom')->name('ecom');
 
 //Single item page
 
@@ -47,13 +55,7 @@ Route::get('/increaseAmount/{id}','CartController@increaseQuantity')->name('incr
 
 Route::get('/removeProduct/{id}','CartController@removeProduct')->name('removeProduct');
 
-// cart
 
-Route::get('/checkout','CartController@index')->name('checkout');
-
-// empty cart
-
-Route::get('/emptyCart','CartController@emptyCart')->name('emptyCart');
 
 
 

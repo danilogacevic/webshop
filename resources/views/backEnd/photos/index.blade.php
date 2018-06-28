@@ -5,7 +5,7 @@ Photo
 
 @section('content')
 
-    <h1>Photos <a href="{{ url('admin/photos/create') }}" class="btn btn-primary pull-right btn-sm">Add New Photo</a></h1>
+    <h1>Photos </h1>
     <div class="table table-responsive">
         <table class="table table-bordered table-striped table-hover" id="tbladmin_photos">
             <thead>

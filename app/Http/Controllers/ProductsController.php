@@ -137,9 +137,11 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($id, Photo $photo)
     {
         $product = Product::findOrFail($id);
+
+        $photo->destroy_all($id);
 
         $product->delete();
 

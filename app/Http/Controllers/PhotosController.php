@@ -48,17 +48,29 @@ class PhotosController extends Controller
 
         if(session()->has('update_product')) {
 
+            // updating product photos
 
             $photo->uploadPhoto($request,Session::get('update_product'));
             return redirect('admin/photos');
-            
+
         } elseif(session()->has('added_product')){
 
+            // uploading photos on product creation
 
             $photo->uploadPhoto($request,Session::get('added_product'));
 
             Session::flash('message', 'Photo added!');
             Session::flash('status', 'success');
+
+            return redirect('admin/photos');
+
+        } else {
+
+            // when session expires
+
+            $lastPhoto = $photo->orderBy('id','desc')->first();
+
+            $photo->uploadPhoto($request,$lastPhoto->product_id);
 
             return redirect('admin/photos');
         }

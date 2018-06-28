@@ -183,7 +183,7 @@ var Dropzone = function (_Emitter) {
          * also trigger additional events (like `processingmultiple`). See the events
          * documentation section for more information.
          */
-        uploadMultiple: false,
+        uploadMultiple: true,
 
         /**
          * Whether you want files to be uploaded in chunks to your server. This can't be

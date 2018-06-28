@@ -14,18 +14,12 @@ use Session;
 class PhotosController extends Controller
 {
 
-    public $photo;
 
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-
-    public function __construct()
-    {
-        $this -> photo = new Photo();
-    }
 
     public function index()
     {
@@ -49,18 +43,19 @@ class PhotosController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Photo $photo)
     {
 
         if(session()->has('update_product')) {
 
 
-            $this->photo->uploadPhoto($request,Session::get('update_product'));
+            $photo->uploadPhoto($request,Session::get('update_product'));
             return redirect('admin/photos');
             
         } elseif(session()->has('added_product')){
 
-            $this->photo->uploadPhoto($request,Session::get('added_product'));
+
+            $photo->uploadPhoto($request,Session::get('added_product'));
 
             Session::flash('message', 'Photo added!');
             Session::flash('status', 'success');

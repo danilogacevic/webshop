@@ -39,7 +39,7 @@ Photo
 
 @section('scripts')
 
-    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/admin/jquery.dataTables.min.js')}}"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){

@@ -8,7 +8,7 @@ Create new Category
     <h1>Create New Category</h1>
     <hr/>
 
-    {!! Form::open(['url' => 'admin/categories', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => 'admin/categories', 'class' => 'form-horizontal','files'=>'true']) !!}
 
                 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
                 {!! Form::label('title', 'Title: ', ['class' => 'col-sm-3 control-label']) !!}
@@ -16,6 +16,17 @@ Create new Category
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                 </div>
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('photo', 'Photo: ', ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+
+                    {!! Form::file('photo',null,['class'=>'form-control'])!!}
+                    {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                </div>
+
+
             </div>
 
 

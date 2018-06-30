@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 
 use App\Photo;
-use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-use Session;
 
 class PhotosController extends Controller
 {
@@ -50,29 +49,29 @@ class PhotosController extends Controller
 
             // updating product photos
 
-            $photo->uploadPhoto($request,Session::get('update_product'));
-            return redirect('admin/photos');
+            $photo->uploadPhoto($request->file('file'),session('update_product'));
+            return ;
 
         } elseif(session()->has('added_product')){
 
             // uploading photos on product creation
 
-            $photo->uploadPhoto($request,Session::get('added_product'));
+            $photo->uploadPhoto($request->file('file'),session('added_product'));
 
             Session::flash('message', 'Photo added!');
             Session::flash('status', 'success');
 
-            return redirect('admin/photos');
+            return ;
 
-        } else {
+        } elseif(!session()->has('update_product') && !session()->has('added_product')) {
 
             // when session expires
 
             $lastPhoto = $photo->orderBy('id','desc')->first();
 
-            $photo->uploadPhoto($request,$lastPhoto->product_id);
+            $photo->uploadPhoto($request->file('file'),$lastPhoto->product_id);
 
-            return redirect('admin/photos');
+            return ;
         }
 
 

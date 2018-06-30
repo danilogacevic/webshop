@@ -31,6 +31,10 @@ class Category extends Model
         return $this->hasMany('App\Product');
     }
 
+    public function photo() {
+        return $this->hasOne('App\Photo');
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *

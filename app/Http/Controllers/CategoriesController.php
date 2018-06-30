@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use App\Photo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -40,14 +41,16 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Photo $photo)
     {
 
         $request->validate([
             'title' => 'required|unique:categories|max:255',
+            'photo' =>'required'
         ]);
         
-        Category::create($request->all());
+        $category = Category::create(['title'=>$request->title]);
+        $photo->uploadPhoto($request->file('photo'),null, $category->id);
 
         Session::flash('message', 'Category added!');
         Session::flash('status', 'success');
@@ -112,6 +115,10 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+
+        $photo = $category->photo;
+
+        unlink(public_path() . $photo->file);
 
         $category->delete();
 

@@ -1,31 +1,38 @@
 @extends('admin.app')
 @section('title')
-Edit Category
+    Create new Category
 @stop
 
 @section('content')
 
-    <h1>Edit Category</h1>
+    <h1>Create New Category</h1>
     <hr/>
 
-    {!! Form::model($category, [
-        'method' => 'PATCH',
-        'url' => ['admin/categories', $category->id],
-        'class' => 'form-horizontal'
-    ]) !!}
+    {!! Form::open(['url' => 'admin/categories', 'class' => 'form-horizontal','files'=>'true']) !!}
 
-                <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-                {!! Form::label('title', 'Title: ', ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('title', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+    <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
+        {!! Form::label('title', 'Title: ', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-6">
+            {!! Form::text('title', null, ['class' => 'form-control']) !!}
+            {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('photo', 'Photo: ', ['class' => 'col-sm-3 control-label']) !!}
+        <div class="col-sm-6">
+
+            {!! Form::file('photo',null,['class'=>'form-control'])!!}
+            {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+        </div>
+
+
+    </div>
 
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>
     {!! Form::close() !!}

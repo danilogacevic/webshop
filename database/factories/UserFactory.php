@@ -26,7 +26,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     return [
         'is_active' => 1,
         'product_title' => $faker->sentence,
-        'category_id' => $faker->numberBetween(1,4), // secret
+        'category_id' => $faker->numberBetween(3,6), // secret
         'product_price' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 20),
         'product_quantity' => $faker->numberBetween(20,100),
         'product_description' => $faker->text($maxNbChars = 500),

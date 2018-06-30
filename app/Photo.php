@@ -23,7 +23,7 @@ class Photo extends Model
      *
      * @var array
      */
-    protected $fillable = ['file', 'product_id'];
+    protected $fillable = ['file', 'product_id','category_id'];
 
 //    file getter for Photo model
 
@@ -34,14 +34,13 @@ class Photo extends Model
 
 //    photos uploading function
 
-    public function uploadPhoto($data,$id=0) {
+    public function uploadPhoto($file,$prod_id,$cat_id=null) {
 
-        $file = $data->file('file');
         $name = time() . $file->getClientOriginalName();
         $file->move('photos' , $name);
 
 
-        $this->create(['file'=>$name,'product_id'=>$id]);
+        $this->create(['file'=>$name,'product_id'=>$prod_id,'category_id'=>$cat_id]);
     }
 
 //    delete all photos related to specific product

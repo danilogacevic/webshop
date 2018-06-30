@@ -1,4 +1,4 @@
-@extends('layouts.ecom')
+@extends('layouts.ecom_old')
 
 @section('content')
 

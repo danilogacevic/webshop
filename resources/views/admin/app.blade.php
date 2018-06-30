@@ -12,7 +12,7 @@
 	<title>SB Admin - Bootstrap Admin Template</title>
 
 	<!-- Bootstrap Core CSS -->
-	<link href="{{asset('css/admin.css')}}" rel="stylesheet">
+	<link href="{{asset('css/admin/admin.css')}}" rel="stylesheet">
 <!-- <link href="@yield('styles')" rel="stylesheet"> -->
 
 @yield('styles')
@@ -209,7 +209,7 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('js/admin.js')}}"></script>
+<script src="{{asset('js/admin/admin.js')}}"></script>
 
 @yield('scripts')
 

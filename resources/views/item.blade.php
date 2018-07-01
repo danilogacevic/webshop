@@ -148,24 +148,26 @@
                         <option>Large</option>
                     </select>
                 </div>
-                <div class="form-group col-sm-12">
-                    <h6>Quantity :</h6>
-                    <!-- Input Order -->
-                    <div class="input-group input-group-lg">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn-e btn-e-primary btn-e-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </span>
-                        <input type="text" name="quant[1]" class="form-control input-number" data-min="1" data-max="10" value="1">
-                        <span class="input-group-btn">
-                                        <button type="button" class="btn-e btn-e-primary btn-e-number" data-type="plus" data-field="quant[1]">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </span>
-                    </div>
-                    <!-- End Input Order -->
-                </div>
+
+                {{--<div class="form-group col-sm-12">--}}
+                    {{--<h6>Quantity :</h6>--}}
+                    {{--<!-- Input Order -->--}}
+                    {{--<div class="input-group input-group-lg">--}}
+                                    {{--<span class="input-group-btn">--}}
+                                        {{--<button type="button" class="btn-e btn-e-primary btn-e-number" disabled="disabled" data-type="minus" data-field="quant[1]">--}}
+                                            {{--<i class="fa fa-minus"></i>--}}
+                                        {{--</button>--}}
+                                    {{--</span>--}}
+                        {{--<input type="text" name="quant[1]" class="form-control input-number" data-min="1" data-max="10" value="1">--}}
+                        {{--<span class="input-group-btn">--}}
+                                        {{--<button type="button" class="btn-e btn-e-primary btn-e-number" data-type="plus" data-field="quant[1]">--}}
+                                            {{--<i class="fa fa-plus"></i>--}}
+                                        {{--</button>--}}
+                                    {{--</span>--}}
+                    {{--</div>--}}
+                    {{--<!-- End Input Order -->--}}
+                {{--</div>--}}
+
                 <div class="form-group col-sm-6">
                     {{--<a href="{{route('addProduct',$product->id)}}" class="btn-e btn-e-primary"><i class="icon-cart"></i> Buy now</a>--}}
 

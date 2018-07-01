@@ -98,7 +98,7 @@ class CategoriesController extends Controller
         
         $category = Category::findOrFail($id);
 
-        if($category->photo) {
+        if($category->photo && $request->file) {
 
             $photo = $category->photo;
 
@@ -128,9 +128,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        $photo = $category->photo;
-
-        unlink(public_path() . $photo->file);
+        ! $photo = $category->photo ? : unlink(public_path() . $photo->file);
 
         $category->delete();
 

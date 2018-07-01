@@ -8,7 +8,13 @@
     <h1>Create New Category</h1>
     <hr/>
 
-    {!! Form::open(['url' => 'admin/categories', 'class' => 'form-horizontal','files'=>'true']) !!}
+
+    {!! Form::model($category, [
+        'method' => 'PATCH',
+        'url' => ['admin/categories', $category->id],
+        'class' => 'form-horizontal',
+        'files' => 'true'
+    ]) !!}
 
     <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
         {!! Form::label('title', 'Title: ', ['class' => 'col-sm-3 control-label']) !!}

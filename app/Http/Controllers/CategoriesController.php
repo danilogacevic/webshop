@@ -93,11 +93,23 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, Request $request, Photo $photo)
     {
         
         $category = Category::findOrFail($id);
-        $category->update($request->all());
+
+        if($category->photo) {
+
+            $photo = $category->photo;
+
+            unlink(public_path() . $photo->file);
+
+            $photo->delete();
+        }
+
+        $category->update(['title'=>$request->title]);
+
+        $photo->uploadPhoto($request->file('photo'),null, $category->id);
 
         Session::flash('message', 'Category updated!');
         Session::flash('status', 'success');

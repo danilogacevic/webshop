@@ -49,7 +49,7 @@ class HomeController extends Controller
                 $query->where('category_id',$catId);
             }])->get();
 
-            return view('posts_categories', compact( 'categories'));
+            return view('items', compact( 'categories'));
 
         } else {
 

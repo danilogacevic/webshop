@@ -15,6 +15,7 @@ Photo
             </thead>
             <tbody>
             @foreach($photos as $item)
+                @if($item->product)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td><a href="{{ url('admin/photos', $item->id) }}">{{ $item->product->product_title }}</a></td><td>
@@ -30,6 +31,7 @@ Photo
                         {!! Form::close() !!}
                     </td>
                 </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

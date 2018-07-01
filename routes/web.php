@@ -57,7 +57,7 @@ Route::get('/item/{id}','HomeController@item')->name('item');
 
 // add product
 
-Route::post('/item/{id}','CartController@addProduct')->name('addProduct');
+Route::post('/add/{id}','CartController@addProduct')->name('addProduct');
 
 // decrease amount
 

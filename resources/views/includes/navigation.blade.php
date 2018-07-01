@@ -94,31 +94,29 @@
 
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html">Option 1: Default Page</a></li>
-                        <li><a href="page_home2.html">Option 2: Agency</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Option 3: Landing pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page_home3.html">Landing page 1</a></li>
-                                <li><a href="page_home4.html">Landing page 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="page_home5.html">Option 5: Restaurant</a></li>
-                        <li><a href="page_home6.html">Option 6: Photography</a></li>
-                        <li><a href="page_home7.html">Option 7: Gallery</a></li>
-                        <li><a href="page_home8.html">Option 8: App</a></li>
-                        <li><a href="page_home9.html">Option 9: Real estate</a></li>
-                        <li><a href="page_home10.html">Option 10: Medical</a></li>
-                        <li><a href="page_home11.html">Option 11: Construction</a></li>
-                    </ul>
+                <li>
+                    <a href="/">About us</a>
+                </li>
+                <li>
+                    <a href="{{route('login')}}">Login</a>
                 </li>
 
-                <li><a href="#">About us</a></li>
-                <li><a href="{{route('login')}}">Login</a></li>
-                <li><a href="{{route('emptyCart')}}">Empty cart</a></li>
+                @if(Auth::check())
+                    <li>
+                        <a href="{{route('adminDashboard')}}">Admin</a>
+                    </li>
+                @endif
+                @if(session()->has('cart.items') && Request::segment(1) != 'checkout')
+                    <li>
+                        <a href="{{route('checkout')}}">Checkout</a>
+                    </li>
+                @endif
+                @if(Request::segment(1) == 'checkout')
+                    <li>
+                        <a href="{{route('emptyCart')}}">Empty cart</a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>

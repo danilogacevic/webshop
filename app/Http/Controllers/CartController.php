@@ -44,29 +44,31 @@ class CartController extends Controller
 
             //     Checking if cart is empty
 
-        if(!empty(Session::get('cart')['items'])){
+        if(!empty(session()->get('cart.items'))){
 
-            $products = Session::get('products')['id'];
+//            $products = Session::get('products')['id'];
 
             //          Checking if item is in the list
 
-            if(! in_array($id,Session::get('cart')['items'])) {
+            if(! in_array($id,session()->get('cart.items'))) {
 
-                Session::push('cart.items', $id);
+                session()->push('cart.items', $id);
 
             }
 
             //            Checking if product is added to shopping cart
 
-            if(Session::has('product_'.$id)) {
+            if(session()->has('product_'.$id)) {
 
-                $amount = 1;
+                $currentAmount = session()->get('product_'.$id);
 
                 //                if it's already there, increase amount by one
 
-                Cache::increment('amount'.$id,$amount);
+//                Cache::increment('amount'.$id,$amount);
 
-                session(['product_'.$id => Cache::get('amount'.$id)]);
+				session()->put('product_'.$id, ++$currentAmount);
+
+//                session(['product_'.$id => Cache::get('amount'.$id)]);
 
                 return redirect()->route('checkout');
 
@@ -74,9 +76,11 @@ class CartController extends Controller
 
                 //                if product isn't in the list, add it and set amount to one. Set time cache time to 10 mins
 
-                Cache::put('amount'.$id,1,10);
+//                Cache::put('amount'.$id,1,10);
+				session()->put('product_'.$id, 1);
 
-                session(['product_'.$id => Cache::get('amount'.$id)]);
+
+//				session(['product_'.$id => Cache::get('amount'.$id)]);
 
                 return redirect()->route('checkout');
 
@@ -89,14 +93,17 @@ class CartController extends Controller
 
 //            if cart is empty, add product to it
 
-            Session::push('cart.items', $id);
+            session()->push('cart.items', $id);
 
 
-            Cache::put('amount'.$id,1,10);
+//            Cache::put('amount'.$id,1,10);
 
-            session(['product_'.$id => Cache::get('amount'.$id)]);
+//            session(['product_'.$id => Cache::get('amount'.$id)]);
 
-            return redirect()->route('checkout');
+			session()->put('product_'.$id, 1);
+
+
+			return redirect()->route('checkout');
 
 
 
@@ -107,23 +114,24 @@ class CartController extends Controller
 
 //        if cache time is expired, empty shoping cart
 
-        if(! cache()->has('amount'.$id)) {
+//        if(! cache()->has('amount'.$id)) {
+//
+//           return $this->emptyCart();
+//        }
 
-           return $this->emptyCart();
-        }
+        if(session('product_'.$id) > 1){
 
-        if(session('product_'.$id)>1){
+            $amount = session()->get('product_' . $id);
 
-            $amount = 1;
-
-            session(['product_'.$id => Cache::decrement('amount'.$id,$amount)]);
+//            session(['product_'.$id => Cache::decrement('amount'.$id,$amount)]);
+            session()->put('product_'.$id,--$amount);
 
             return redirect()->route('checkout');
 
         } else {
 
             session()->forget('product_'.$id);
-            Cache::forget('amount' . $id);
+//            Cache::forget('amount' . $id);
 
             return redirect()->route('checkout');
         }
@@ -136,18 +144,21 @@ class CartController extends Controller
         //        if cache time is expired, empty shoping cart
 
 
-        if(! cache()->has('amount'.$id)) {
-
-           return $this->emptyCart();
-        }
+//        if(! cache()->has('amount'.$id)) {
+//
+//           return $this->emptyCart();
+//        }
 
         $product = Product::findOrFail($id);
 
         if(session('product_'.$id) < $product->product_quantity){
 
-            $amount = 1;
+			$amount = session()->get('product_' . $id);
 
-            session(['product_'.$id => Cache::increment('amount'.$id,$amount)]);
+			session()->put('product_' . $id,++$amount);
+
+
+//			session(['product_'.$id => Cache::increment('amount'.$id,$amount)]);
 
             return redirect()->route('checkout');
 
@@ -170,7 +181,7 @@ class CartController extends Controller
         //    Removing product from list
 
         session()->forget('product_'.$id);
-        Cache::forget('amount' . $id);
+//        Cache::forget('amount' . $id);
 
         return redirect()->route('checkout');
     }
@@ -188,7 +199,7 @@ class CartController extends Controller
             session()->forget('product_'. $productId);
         }
         session()->forget('cart.items');
-        cache()->flush();
+//        cache()->flush();
         return redirect()->route('ecom');
     }
 }

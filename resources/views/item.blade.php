@@ -1,4 +1,4 @@
-@extends('layouts.item_ecada')
+@extends('layouts.item')
 
 @section('item')
     <div class="row">
